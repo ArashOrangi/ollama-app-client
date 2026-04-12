@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 23, 42;
+  --background-end-rgb: 2, 6, 23;
+  --fa-font:
+    "Vazirmatn", "VazirMatn", "IRANYekanWeb", "Shabnam", Tahoma, sans-serif;
+  --mono-font:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+html,
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--fa-font);
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  direction: rtl;
+  text-align: right;
+}
+
+p,
+blockquote,
+q,
+details,
+summary,
+table,
+th,
+td,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--fa-font);
+}
+
+table {
+  border-collapse: collapse;
+}
+
+pre,
+code,
+kbd,
+samp {
+  direction: ltr;
+  text-align: left;
+  font-family: var(--mono-font);
+}
+
+.message {
+  direction: auto;
+  unicode-bidi: plaintext;
+}
