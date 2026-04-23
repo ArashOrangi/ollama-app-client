@@ -8,70 +8,46 @@
   --background-end-rgb: 2, 6, 23;
   --fa-font:
     "Vazirmatn", "VazirMatn", "IRANYekanWeb", "Shabnam", Tahoma, sans-serif;
-  --mono-font:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --mono-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 html,
 body {
+  /* به جای RTL مطلق، اجازه بده ساختار کلی RTL باشد اما محتوا منعطف */
   direction: rtl;
   text-align: right;
   font-family: var(--fa-font);
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-start-rgb));
+  min-height: 100vh;
 }
 
-input,
-textarea,
-select,
-button {
-  font: inherit;
-  direction: rtl;
-  text-align: right;
-}
-
+/* حذف اجبار RTL از تگ‌های عمومی برای جلوگیری از تداخل با کدها */
 p,
-blockquote,
-q,
-details,
-summary,
-table,
-th,
-td,
-ul,
-ol,
-li,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  direction: rtl;
-  text-align: right;
-  font-family: var(--fa-font);
+h6,
+ul,
+ol,
+li {
+  direction: inherit;
+  text-align: inherit;
 }
 
-table {
-  border-collapse: collapse;
-}
-
-pre,
-code,
-kbd,
-samp {
-  direction: ltr;
-  text-align: left;
-  font-family: var(--mono-font);
-}
-
-.message {
-  direction: auto;
+/* استایل مخصوص بلاک‌های متن در چت */
+.prose-chat {
+  direction: auto; /* تشخیص خودکار جهت متن */
   unicode-bidi: plaintext;
+  line-height: 1.7;
+}
+
+/* استایل کدها */
+pre,
+code {
+  direction: ltr !important;
+  text-align: left !important;
+  font-family: var(--mono-font) !important;
 }

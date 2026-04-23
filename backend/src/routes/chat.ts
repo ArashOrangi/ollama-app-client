@@ -19,7 +19,7 @@ router.get("/conversations", authenticate, async (req: any, res) => {
 router.post("/send", authenticate, async (req: any, res) => {
   const { conversationId, content, model } = req.body;
   let currentConvId = conversationId;
-
+  if (!model) return res.status(400).json({ error: "Model is required" });
   if (!currentConvId) {
     const newConv = await prisma.conversation.create({
       data: { userId: req.userId, title: content.substring(0, 30) },
@@ -33,7 +33,7 @@ router.post("/send", authenticate, async (req: any, res) => {
 
   try {
     const response = await axios.post(OLLAMA_URL, {
-      model: model || "gemma3:1b",
+      model,
       prompt: content,
       stream: false,
     });
