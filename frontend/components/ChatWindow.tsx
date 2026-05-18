@@ -61,9 +61,9 @@ export default function ChatWindow({
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [file, setFile] = useState<File | null>(null); // ← فایل
+  const [file, setFile] = useState<File | null>(null); // ← file
 
-  const [model, setModel] = useState("llama3"); // مدل پیش‌فرض
+  const [model, setModel] = useState("llama3"); // default model
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Load conversation history
@@ -103,7 +103,7 @@ export default function ChatWindow({
     });
 
     setFile(null);
-    return res.data.url; // لینک دانلود
+    return res.data.url; //download link
   };
 
   // Send Message
@@ -113,16 +113,13 @@ export default function ChatWindow({
 
     setLoading(true);
 
-    // اگر فایل هست → اول فایل آپلود شود
     let fileUrl: string | null = null;
     if (file) {
       fileUrl = await uploadFile();
     }
 
-    // محتوای نهایی پیام
     const messageContent = fileUrl ? `${input}\n\nFile: ${fileUrl}` : input;
 
-    // نمایش پیام کاربر
     setMessages((prev) => [
       ...prev,
       {
@@ -151,7 +148,6 @@ export default function ChatWindow({
       // set conversation id if needed
       if (!conversationId) setConversationId(res.data.conversationId);
 
-      // نمایش پاسخ AI
       setMessages((prev) => [...prev, res.data.message]);
     } catch (err) {
       console.error(err);
